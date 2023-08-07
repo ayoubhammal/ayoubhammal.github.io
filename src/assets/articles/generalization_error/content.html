@@ -1,0 +1,72 @@
+<div class="article-title">
+    <h1>An Introduction to generalization error of loss functions</h1>
+</div>
+
+<div class="article-abstract">
+    <ol>
+        <li>
+            Introduction
+            <ol>
+                <li>
+                    The supervised learning problem
+                </li>
+            </ol>
+        </li>
+        <li>
+            Risk 
+            <ol>
+                <li>
+                    Bayes risk
+                </li>
+                <li>
+                    Excess risk 
+                </li>
+                <li>
+                    Excess risk decomposition
+                </li>
+            </ol>
+        </li>
+        <li>
+            Classification-Calibrated convex surrogates
+            <ol>
+                <li>
+                    Example of non classification-calibrated multiclass SVM loss function
+                </li>
+            </ol>
+        </li>
+    </ol>
+</div>
+
+<div class="article-index">
+</div>
+
+<div class="article-content">
+    <h2>1. Introduction</h2>
+    <p>The ability of a machine learning model to generalize on unseen data is a critical performance measure that ensures the reliability of the model. Even though assessing the generalization ability of a model is an intractable problem, it is possible to derive bounds over the error the model produces on new data. In this work, we will study generalization properties of loss functions. We will define theoretical tools that we will use to construct bounds over the generalization performances of loss function for classification tasks.</p>
+    <h2>1.1. The supervised learning problem</h2>
+    <p>Given a labeled dataset \((x^{(i)}, y^{(i)}) \in X \times Y\) of input-output pairs, the statistical learning task aims to find a mapping between the input space \(X\) and the output space \(Y\) that satisfies a certain metric relative to the problem. This mapping should generalize well on new unseen data for any instance drawn from the same data distribution as the training dataset.</p>
+    <p>To this end, we assume access to a set of i.i.d. samples drawn from an unknown joint probability distribution \(D_{\mathrm{xy}}\), in order to find a scoring function \(f \in F\) that minimizes a loss metric \(\ell : Y \times W \rightarrow \mathbb{R}_{+}\) representing the prediction error. Where \(F\) is called the hypothesis space and \(f\) maps the input space \(X\) to a scoring space \(W\) that varies depending on the problem. The scores of \(f\) are transformed to actual predictions using a read-out or prediction function such as a sigmoid or softmax, among others. \(F\) being the set of parameterized functions, is typically very large, and we use optimization algorithms such as <em>gradient descent</em> with respect to the function continuous parameters to find a suitable scoring function that minimizes the average loss value over a training dataset, this approach is known as <em>empirical risk minimization</em>.</p>
+    <p>In this work, we will focus on classification problems only. We will start by studying binary classification and then generalize to the multiclass classification case.</p>
+    <p>In the case of binary classification, the label space is reduced to \(Y = \{0, 1\}\), and the scoring function image is in \(\mathbb{R}\). This score represents the positive class score and is mapped using sigmoid to \([0, 1]\) interval.</p>
+    <p>A typical loss function for binary classification is the 0-1 loss \(\ell_{0-1} (y, w) = \mathbb{1}_{w(2y - 1) &lt; 0}\) which assigns 1 to misclassifications and 0 otherwise.</p>
+    <p>But considering now the optimization problem, minimizing the empirical risk associated to the 0-1 loss function is difficult since its gradient is null almost everywhere. Moreover, it is not continuous and non-convex. Therefore, for optimization purposes, it is usual to rely on <em>convex surrogate</em> loss functions that are convex upper bounds of the 0-1 loss. Some examples of convex surrogates are listed below as well as their respective plots in figure 1:
+    <ul>
+        <li>
+            <em>Exponential loss</em>: \(\ell_{\exp} (y, w) = e^{-w(2y - 1)}\) used by AdaBoost algorithm.
+        </li>
+        <li>
+            <em>Logistic loss</em>: \(\ell_{logistic} (y, w) = \frac{1}{\log(2)} \log(1 + e^{-w(2y - 1)})\) or negative log-likelihood.
+        </li>
+        <li>
+            <em>Hinge loss</em>: \(\ell_{hinge} (y, w) = \max(0, 1 - w(2y - 1)\) used in SVMs.
+        </li>
+    </p>
+    <figure>
+        <img src="/src/assets/articles/generalization_error/common_loss_functions.jpeg" alt="Common loss functions" width="400px">
+        <figcaption>Figure 1: Common loss functions</figcaption>
+    </figure>
+
+    <p>
+    </p>
+</div>
+

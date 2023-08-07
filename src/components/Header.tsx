@@ -8,10 +8,8 @@ const Header: Component = () => {
             </div>
             <nav class={style["header-nav-container"]}>
                 <div class={style["header-nav-links"]}>
-                    <a href="index.html">Home</a>
-                    <a href="#publications">Publications</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#contact">Contact</a>
+                    <a href="/">Home</a>
+                    <a href="/blog">Blog</a>
                 </div>
             </nav>
             <hr/>

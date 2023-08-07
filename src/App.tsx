@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Curriculum from './components/Curriculum';
 import Blog from './components/Blog';
+import Article from './components/Article';
 
 const App: Component = () => {
     return (
@@ -15,6 +16,7 @@ const App: Component = () => {
                 <Routes>
                     <Route path="/" component={Curriculum} />
                     <Route path="/blog" component={Blog} />
+                    <Route path="/blog/:name" component={Article} />
                 </Routes>
             </Router>
             <Footer />

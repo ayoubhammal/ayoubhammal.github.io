@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@solidjs/router": "^0.8.2",
+    "mathjax": "^3.2.2",
     "solid-js": "^1.7.6"
   }
 }
