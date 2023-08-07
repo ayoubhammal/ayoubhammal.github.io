@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Cormorant Garamond";
-    src: url("/src/assetsfonts/CormorantGaramond-Regular.ttf") format("TrueType");
+    src: url("/src/assets/fonts/CormorantGaramond-Regular.ttf") format("TrueType");
     font-weight: normal;
     font-style: normal;
 }
@@ -12,7 +12,7 @@
 }
 @font-face {
     font-family: "Cormorant Garamond";
-    src: url("/src/assetsfonts/CormorantGaramond-Bold.ttf") format("TrueType");
+    src: url("/src/assets/fonts/CormorantGaramond-Bold.ttf") format("TrueType");
     font-weight: bold;
     font-style: normal;
 }
