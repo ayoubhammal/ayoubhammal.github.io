@@ -1,0 +1,13 @@
+.item-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 0px 5px 0px;
+}
+
+.item-description {
+    padding: 2px 0px 5px 0px;
+}
+
+li {
+    padding: 5px 0px;
+}

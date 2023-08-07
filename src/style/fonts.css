@@ -1,0 +1,72 @@
+@font-face {
+    font-family: "Cormorant Garamond";
+    src: url("/src/assetsfonts/CormorantGaramond-Regular.ttf") format("TrueType");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Cormorant Garamond";
+    src: url("/src/assets/fonts/CormorantGaramond-Italic.ttf") format("TrueType");
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Cormorant Garamond";
+    src: url("/src/assetsfonts/CormorantGaramond-Bold.ttf") format("TrueType");
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Cormorant Garamond";
+    src: url("/src/assets/fonts/CormorantGaramond-BoldItalic.ttf") format("TrueType");
+    font-weight: bold;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Cormorant Garamond";
+    src: url("/src/assets/fonts/CormorantGaramond-Light.ttf") format("TrueType");
+    font-weight: light;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Cormorant Garamond";
+    src: url("/src/assets/fonts/CormorantGaramond-LightItalic.ttf") format("TrueType");
+    font-weight: light;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Cormorant Garamond";
+    src: url("/src/assets/fonts/CormorantGaramond-Medium.ttf") format("TrueType");
+    font-weight: medium;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Cormorant Garamond";
+    src: url("/src/assets/fonts/CormorantGaramond-MediumItalic.ttf") format("TrueType");
+    font-weight: medium;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Ubuntu Mono";
+    src: url("/src/assets/fonts/UbuntuMono-Regular.ttf") format("TrueType");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Ubuntu Mono";
+    src: url("/src/assets/fonts/UbuntuMono-Italic.ttf") format("TrueType");
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Ubuntu Mono";
+    src: url("/src/assets/fonts/UbuntuMono-Bold.ttf") format("TrueType");
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Ubuntu Mono";
+    src: url("/src/assets/fonts/UbuntuMono-BoldItalic.ttf") format("TrueType");
+    font-weight: bold;
+    font-style: italic;
+}

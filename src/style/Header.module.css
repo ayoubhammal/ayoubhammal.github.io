@@ -1,0 +1,17 @@
+.header {
+    padding: 20px 0px 20px 0px;
+}
+
+.header-nav-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+.header-nav-container a {
+    padding: 0 3px;
+}
+
