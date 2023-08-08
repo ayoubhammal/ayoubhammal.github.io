@@ -6,7 +6,8 @@ import styles from '../style/Blog.module.css';
 
 type ArticleData = {
     title?: string,
-    name?: string,
+    name?: string | null,
+    date?: string | null
 };
 
 const Blog: Component = () => {
@@ -45,7 +46,7 @@ const Blog: Component = () => {
             >
                 <Index each={articleData()}>
                 {
-                    (data, i) => <ArticleCard title={data().title} name={data().name} />
+                    (data, i) => <ArticleCard {...data} />
                 }
                 </Index>
             </Show>
@@ -54,10 +55,11 @@ const Blog: Component = () => {
 }
 
 const ArticleCard: Component<ArticleData> = (props) => {
-    const mergedProps: {title: string, name: string | null} = mergeProps(
+    const mergedProps: ArticleData = mergeProps(
         {
             title: "Missing title",
             name: null,
+            date: null,
         },
         props
     );
@@ -65,7 +67,14 @@ const ArticleCard: Component<ArticleData> = (props) => {
         <A href={`/blog/${mergedProps.name}`}>
             <div class={styles["article-card"]}>
                     <img class={styles["article-card-image"]} src={`/articles/${mergedProps.name}/image.jpeg`} alt={mergedProps.title} />
-                    <h2 class={styles["article-card-title"]}>{mergedProps.title}</h2>
+                    <div>
+                        <h2 class={styles["article-card-title"]}>{mergedProps.title}</h2>
+                        <Show
+                            when={mergedProps.date !== null}
+                        >
+                            <em>{mergedProps.date}</em>
+                        </Show>
+                    </div>
             </div>
         </A>
     );
