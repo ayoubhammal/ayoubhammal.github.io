@@ -1,4 +1,15 @@
-.article-image {
+.article-card {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    column-gap: 20px;
+}
+
+.article-card-image {
     width: 200px;
     height: 200px;
+}
+
+.article-card-title {
+    display: inline;
 }
