@@ -38,6 +38,7 @@ const Blog: Component = () => {
     return (
         <main class="main">
             <h1>Articles</h1>
+            <hr />
             <Show 
                 when={articleData().length}
                 fallback={<div>Empty, what a shame.</div>}
