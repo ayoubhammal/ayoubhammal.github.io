@@ -6,6 +6,15 @@
         <meta name="theme-color" content="#000000" />
         <link rel="shortcut icon" type="image/ico" href="/src/assets/favicon.ico" />
         <title>Ayoub Hammal</title>
+        <script>
+            (function(){
+                var redirect = sessionStorage.redirect;
+                delete sessionStorage.redirect;
+                if (redirect && redirect != location.href) {
+                    history.replaceState(null, null, redirect);
+                }
+            })();
+        </script>
         <script src="/src/index.tsx" type="module"></script>
         <script src="/node_modules/mathjax/es5/tex-chtml.js" id="MathJax-script" async></script>
     </head>
