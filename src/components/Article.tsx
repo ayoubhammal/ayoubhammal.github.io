@@ -3,6 +3,9 @@ import { createSignal, createEffect } from 'solid-js';
 import { useParams } from '@solidjs/router';
 import styles from '../style/Article.module.css';
 
+import "../config/mathJaxConfig";
+import "mathjax/es5/tex-mml-svg.js"; 
+
 const Article: Component = () => {
     const params = useParams();
     const [content, setContent] = createSignal(document.createElement("article"), { equals: false });
