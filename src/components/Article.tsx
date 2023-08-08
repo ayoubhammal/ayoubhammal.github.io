@@ -9,7 +9,7 @@ const Article: Component = () => {
 
     createEffect(() => {
         fetch(
-            `/src/assets/articles/${params.name}/content.html`,
+            `/articles/${params.name}/content.html`,
             {
                 method: "GET",
                 headers: {

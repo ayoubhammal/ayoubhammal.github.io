@@ -14,7 +14,7 @@ const Blog: Component = () => {
 
     createEffect(() => {
         fetch(
-            "/src/assets/articles/list.json",  
+            "/articles/list.json",  
             {
                 method: "GET",
                 headers: {
@@ -64,7 +64,7 @@ const ArticleCard: Component<ArticleData> = (props) => {
         <div class="article-card">
             <A href={`/blog/${mergedProps.name}`}>
                 <h2>{mergedProps.title}</h2>
-                <img class={styles["article-image"]} src={`/src/assets/articles/${mergedProps.name}/image.jpeg`} alt={mergedProps.title} />
+                <img class={styles["article-image"]} src={`/articles/${mergedProps.name}/image.jpeg`} alt={mergedProps.title} />
             </A>
         </div>
     );
