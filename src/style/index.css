@@ -24,7 +24,7 @@
 }
 
 body {
-    font-family: "Hermit", "Ubuntu Mono", "Cormorant Garamond", "serif";
+    font-family: "JetBrains Mono", "Hermit", "Ubuntu Mono", "Cormorant Garamond", "serif";
     margin: 0;
     background-color: var(--color-base3);
     color: var(--color-base01);

@@ -106,3 +106,27 @@
     font-weight: normal;
     font-style: italic;
 }
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("/src/assets/fonts/JetBrainsMono-Regular.ttf") format("TrueType");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("/src/assets/fonts/JetBrainsMono-Italic.ttf") format("TrueType");
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("/src/assets/fonts/JetBrainsMono-Bold.ttf") format("TrueType");
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("/src/assets/fonts/JetBrainsMono-BoldItalic.ttf") format("TrueType");
+    font-weight: bold;
+    font-style: italic;
+}
