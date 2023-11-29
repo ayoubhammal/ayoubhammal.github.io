@@ -70,3 +70,39 @@
     font-weight: bold;
     font-style: italic;
 }
+@font-face {
+    font-family: "Hermit";
+    src: url("/src/assets/fonts/Hermit-Bold.otf") format("OpenType");
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Hermit";
+    src: url("/src/assets/fonts/Hermit-BoldItalic.otf") format("OpenType");
+    font-weight: bold;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Hermit";
+    src: url("/src/assets/fonts/Hermit-Light.otf") format("OpenType");
+    font-weight: light;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Hermit";
+    src: url("/src/assets/fonts/Hermit-LightItalic.otf") format("OpenType");
+    font-weight: light;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Hermit";
+    src: url("/src/assets/fonts/Hermit-Regular.otf") format("OpenType");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Hermit";
+    src: url("/src/assets/fonts/Hermit-RegularItalic.otf") format("OpenType");
+    font-weight: normal;
+    font-style: italic;
+}
