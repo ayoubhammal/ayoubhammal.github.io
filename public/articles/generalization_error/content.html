@@ -132,7 +132,7 @@
     </p>
     <h3 id="subsection_2_1">2.1. Bayes risk</h3>
     <p>
-        Bayes risk \(\risk^{*}\) is the minimum value associated with the 0-1 loss function of the true risk \(\risk (f)\) and it is the risk of a optimal \textit{Bayes predictor} \(f^{*}\) such that
+    Bayes risk \(\risk^{*}\) is the minimum value associated with the 0-1 loss function of the true risk \(\risk (f)\) and it is the risk of a optimal <i>Bayes predictor</i> \(f^{*}\) such that
         $$ \risk^{*} = \inf_{f} \risk (f) = \inf_{f} \E_{(\rx, \ry) \sim D} [ \ell_{0-1} (\ry, f(\rx)) ] $$
         where \(f\) is a measurable function. Using the law of total expectation, and by partitioning the previous expectation with respect to \(\rx\), we can rewrite the risk as an expression of the conditional expectation of \(\ry\) knowing \(\rx\):
         $$ \risk (f) = \E_{\rx \sim D_{\rx}} \E_{\ry \sim D_{\ry}} [ \ell_{0-1} (\ry, f(x)) | \rx = x ] = \int_{x} \E_{\ry \sim D_{\ry}} [ \ell_{0-1} (\ry, f(x)) | \rx = x ] p(x) dx $$
@@ -156,7 +156,7 @@
     <p>
         We can define Bayes risk for convex surrogates \(\risk^{*}_{\ell}\) by replacing the 0-1 loss function with its surrogate. And by doing so, we can try to upper bound the excess risk relative to the 0-1 loss with the excess risk of its surrogates:
         $$ \risk (f) - \risk^{*} \leq H (\risk_{\ell} (f) - \risk^{*}_{\ell}) $$
-        where \(H: \mathbb{R}_{+} \rightarrow \mathbb{R}_{+}\) is usually called, if it exists, a \textit{calibration function}. \(H\) depends on the choice of the convex surrogate and it is trivial that the tighter it is the calibration function, the more precise is the excess risk estimation <a href="#ref_2">[2]</a>. This ensures that a minimizer of the convex surrogate will also minimize the 0-1 loss to a certain order that is expressed by this calibration function.
+        where \(H: \mathbb{R}_{+} \rightarrow \mathbb{R}_{+}\) is usually called, if it exists, a <i>calibration function<i>. \(H\) depends on the choice of the convex surrogate and it is trivial that the tighter it is the calibration function, the more precise is the excess risk estimation <a href="#ref_2">[2]</a>. This ensures that a minimizer of the convex surrogate will also minimize the 0-1 loss to a certain order that is expressed by this calibration function.
     </p>
     <h3 id="subsection_2_3">2.3. Excess risk decomposition</h3>
     <p>
@@ -415,7 +415,7 @@
             \end{align}
         </p>
         <p>
-            The solution of this problem satisfies the following K.K.T.\ conditions:
+            The solution of this problem satisfies the following K.K.T. conditions:
             \begin{align}
                 \forall i : \quad & \frac{\partial}{\partial g_{i}} \left ( \sum_{i} P_{i} (1 - g_{i} + \sum_{j \neq i} g_{j}) - \sum_{i} \lambda_{i} g_{i} \right ) = 0 \nonumber \\
                 \forall i : \quad & g_{i} \geq 0 \nonumber \\
@@ -445,7 +445,7 @@
             \end{align}
         </p>
         <p>
-            The solution of this problem satisfies the following K.K.T.\ conditions:
+            The solution of this problem satisfies the following K.K.T. conditions:
             \begin{align}
                 \forall i : \quad & \frac{\partial}{\partial g_{i}} \left ( \sum_{i \neq m} P_{i} (1 - g_{i} + \sum_{j \neq i} g_{j}) - \sum_{i} \lambda_{i} g_{i} + \mu (1 - g_{m} + \sum_{j \neq m} g_{j}) \right ) = 0 \nonumber \\
                 \forall i : \quad & g_{i} \geq 0 \nonumber \\

@@ -130,3 +130,28 @@
     font-weight: bold;
     font-style: italic;
 }
+
+@font-face {
+    font-family: "New Century Schoolbook";
+    src: url("/src/assets/fonts/C059-Roman.ttf") format("TrueType");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "New Century Schoolbook";
+    src: url("/src/assets/fonts/C059-Italic.ttf") format("TrueType");
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: "New Century Schoolbook";
+    src: url("/src/assets/fonts/C059-Bold.ttf") format("TrueType");
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: "New Century Schoolbook";
+    src: url("/src/assets/fonts/C059-BdIta.ttf") format("TrueType");
+    font-weight: bold;
+    font-style: italic;
+}

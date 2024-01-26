@@ -24,7 +24,8 @@
 }
 
 body {
-    font-family: "JetBrains Mono", "Hermit", "Ubuntu Mono", "Cormorant Garamond", "serif";
+    font-family: "New Century Schoolbook", "JetBrains Mono", "Hermit", "Ubuntu Mono", "Cormorant Garamond", "serif";
+    line-height: 150%;
     margin: 0;
     background-color: var(--color-base3);
     color: var(--color-base01);
