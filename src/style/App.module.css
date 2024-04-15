@@ -1,13 +1,4 @@
 .container {
-    width: 60%;
     margin: 20px auto 10px auto;
     padding: 0 40px;
-    border-style: none solid;
-    border-width: 0 2px;
-}
-
-@media screen and (max-width: 1200px) {
-  .container {
-      width: 90%
-  }
 }
