@@ -10,7 +10,7 @@ const Footer: Component = () => {
                     Ayoub Hammal
                 </div>
                 <div class={style["footer-year"]}>
-                    Last updated: August, 2023
+                    Last updated: June, 2024
                 </div>
             </div>
         </footer>
