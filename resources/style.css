@@ -1,0 +1,115 @@
+:root {
+    --color-base03: #002b36;
+    --color-base02: #073642;
+    --color-base01: #000000;
+    --color-base00: #657b83;
+    --color-base0: #839496;
+    --color-base1: #93a1a1;
+    --color-base2: #eee8d5;
+    --color-base3: #ffffff;
+    --color-yellow: #b58900;
+    --color-orange: #cb4b16;
+    --color-red: #dc322f;
+    --color-magenta: #d33682;
+    --color-violet: #250f90;
+    --color-blue: #005090;
+    --color-cyan: #0080ff;
+    --color-green: #859900;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "serif";
+    line-height: 150%;
+    margin: 0;
+    background-color: var(--color-base3);
+    color: var(--color-base01);
+}
+
+li {
+    padding: 5px 0px;
+}
+
+a {
+    color: var(--color-blue);
+    text-decoration: none;
+}
+
+img {
+    background-color: white;
+}
+
+a:visited {
+    color: var(--color-violet);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-cyan);
+    text-decoration: none;
+}
+
+hr {
+    border-width: 1px 0 0;
+    border-style: solid;
+    border-color: var(--color-base1);
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h1, h2 {
+    margin-bottom: 10px;
+    line-height: 150%;
+}
+.container {
+    margin: 20px auto 10px auto;
+    padding: 0 40px;
+}
+.article-card {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    column-gap: 20px;
+}
+.article-card-image {
+    width: 200px;
+    height: 200px;
+}
+.item-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 0px 5px 0px;
+}
+.item-description {
+    padding: 2px 0px 5px 0px;
+}
+.footer {
+    padding: 20px 0px 20px 0px;
+}
+.footer-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+.header {
+    padding: 20px 0px 20px 0px;
+}
+.header-nav-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+.header-nav-container a {
+    padding: 0 10px;
+}

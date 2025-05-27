@@ -160,8 +160,6 @@ func main() {
 	}
 
 	// attaching the header/footer to the blog index
-
-	blogIndexTitle := plan.Blog.Index.Title
 	blogIndexMain, err := template.ParseFiles(path.Join(*srcPath, plan.Blog.Index.Path))
 	if err != nil {
 		log.Fatal(err)
@@ -229,7 +227,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	err = pageTemplate.Execute(pageFile, TemplateData{blogIndexTitle, fullBlogIndexPage})
+	err = pageTemplate.Execute(pageFile, TemplateData{plan.Blog.Index.Title, fullBlogIndexPage})
 	if err != nil {
 		log.Fatal(err)
 	}
