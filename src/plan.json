@@ -1,0 +1,35 @@
+{
+    "pageTemplate": {
+        "path": "template.html"
+    },
+    "header": {
+        "path": "header.html"
+    },
+    "footer": {
+        "path": "footer.html"
+    },
+    "pages": [
+        {
+            "path": "index.html",
+            "title": "Ayoub Hammal"
+        }
+    ],
+    "blog": {
+        "index": {
+            "path": "blog.html",
+            "ttile": "Blog"
+        },
+        "entry": {
+            "path": "blogEntry.html"
+        },
+        "pages": [
+            {
+                "path": "blog/generalization_error.html",
+                "imgPath": "/articles/generalization_error/image.jpeg",
+                "title": "Generalization error",
+                "date": "03-2023",
+                "description": ""
+            }
+        ]
+    }
+}
