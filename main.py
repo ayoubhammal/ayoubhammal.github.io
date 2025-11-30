@@ -103,6 +103,9 @@ def main() -> None:
     with open(blog_index_output_path, "w") as blog_index_output_file:
         blog_index_output_file.write(blog_index_full)
 
+    logger.info("Copying resources folder.")
+    shutil.copytree(RESOURCE_PATH, OUTPUT_PATH / RESOURCE_PATH)
+
 
 if __name__ == "__main__":
     main()
