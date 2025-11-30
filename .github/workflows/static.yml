@@ -30,16 +30,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Go
-        uses: actions/setup-go@v4
+      - name: Set up Python 3.14
+        uses: actions/setup-python@v3
         with:
-          go-version: '1.23'
+          python-version: "3.14"
 
-      - name: Build
-        run: go build
-
-      - name: Compile
-        run: ./compiler --path src/
+      - name: Builder
+        run: python main.py
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
