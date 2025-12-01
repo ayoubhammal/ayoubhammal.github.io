@@ -2,6 +2,7 @@ import json
 import pathlib
 import logging
 import shutil
+import datetime
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -42,7 +43,8 @@ def main() -> None:
     footer_path = SOURCE_PATH / plan_dict["footer"]["path"]
     logger.info(f"Loading footer.")
     with open(footer_path, "r") as footer_file:
-        footer = footer_file.read()
+        todaydate = datetime.date.today()
+        footer = footer_file.read().format(date=todaydate.isoformat())
     # reading the template
     template_path = SOURCE_PATH / plan_dict["pageTemplate"]["path"]
     logger.info(f"Loading page template.")
