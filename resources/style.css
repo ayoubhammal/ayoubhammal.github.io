@@ -23,9 +23,9 @@
 
 body {
     font-family: "serif";
-    line-height: 150%;
+    line-height: 130%;
     margin: 0;
-    background-color: var(--color-base3);
+    background-color: var(--color-base2);
     color: var(--color-base01);
 }
 
@@ -67,8 +67,8 @@ h1, h2 {
     line-height: 150%;
 }
 .container {
-    margin: 20px auto 10px auto;
-    padding: 0 40px;
+    margin: 3em auto 1em auto;
+    padding: 0 20%;
 }
 .article-card {
     display: flex;

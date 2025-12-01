@@ -1,12 +1,3 @@
-\(
-    \newcommand{\risk}{\mathscr{r}}
-    \newcommand{\erisk}{\widetilde{\risk}}
-    \newcommand{\E}{\mathbb{E}}
-    \def\rx{{\textnormal{x}}}
-    \def\ry{{\textnormal{y}}}
-    \DeclareMathOperator*{\argmax}{arg\,max}
-    \DeclareMathOperator*{\argmin}{arg\,min}
-\)
 <div class="article-title">
     <h1>An Introduction to generalization error of loss functions</h1>
     <hr />
@@ -96,7 +87,7 @@
     <p>The ability of a machine learning model to generalize on unseen data is a critical performance measure that ensures the reliability of the model. Even though assessing the generalization ability of a model is an intractable problem, it is possible to derive bounds over the error the model produces on new data. In this work, we will study generalization properties of loss functions. We will define theoretical tools that we will use to construct bounds over the generalization performances of loss function for classification tasks.</p>
     <h3 id="subsection_1_1">1.1. The supervised learning problem</h3>
     <p>Given a labeled dataset \((x^{(i)}, y^{(i)}) \in X \times Y\) of input-output pairs, the statistical learning task aims to find a mapping between the input space \(X\) and the output space \(Y\) that satisfies a certain metric relative to the problem. This mapping should generalize well on new unseen data for any instance drawn from the same data distribution as the training dataset.</p>
-    <p>To this end, we assume access to a set of i.i.d. samples drawn from an unknown joint probability distribution \(D_{\rx\ry}\), in order to find a scoring function \(f \in F\) that minimizes a loss metric \(\ell : Y \times W \rightarrow \mathbb{R}_{+}\) representing the prediction error. Where \(F\) is called the hypothesis space and \(f\) maps the input space \(X\) to a scoring space \(W\) that varies depending on the problem. The scores of \(f\) are transformed to actual predictions using a read-out or prediction function such as a sigmoid or softmax, among others. \(F\) being the set of parameterized functions, is typically very large, and we use optimization algorithms such as <em>gradient descent</em> with respect to the function continuous parameters to find a suitable scoring function that minimizes the average loss value over a training dataset, this approach is known as <em>empirical risk minimization</em>.</p>
+    <p>To this end, we assume access to a set of i.i.d. samples drawn from an unknown joint probability distribution \(D_{\textnormal{x}\textnormal{y}}\), in order to find a scoring function \(f \in F\) that minimizes a loss metric \(\ell : Y \times W \rightarrow \mathbb{R}_{+}\) representing the prediction error. Where \(F\) is called the hypothesis space and \(f\) maps the input space \(X\) to a scoring space \(W\) that varies depending on the problem. The scores of \(f\) are transformed to actual predictions using a read-out or prediction function such as a sigmoid or softmax, among others. \(F\) being the set of parameterized functions, is typically very large, and we use optimization algorithms such as <em>gradient descent</em> with respect to the function continuous parameters to find a suitable scoring function that minimizes the average loss value over a training dataset, this approach is known as <em>empirical risk minimization</em>.</p>
     <p>In this work, we will focus on classification problems only. We will start by studying binary classification and then generalize to the multiclass classification case.</p>
     <p>In the case of binary classification, the label space is reduced to \(Y = \{0, 1\}\), and the scoring function image is in \(\mathbb{R}\). This score represents the positive class score and is mapped using sigmoid to \([0, 1]\) interval.</p>
     <p>A typical loss function for binary classification is the 0-1 loss \(\ell_{0-1} (y, w) = \mathbb{1}_{w(2y - 1) &lt; 0}\) which assigns 1 to misclassifications and 0 otherwise.</p>
@@ -120,11 +111,11 @@
     <h2 id="section_2">2. Risk</h2>
     <p>
         The risk, or the true risk of a scoring function, is the expected value of the loss function over the data distribution \(D\) and is written as such:
-        $$ \risk_{\ell} (f) = \E_{(\rx, \ry) \sim D} [ \ell (\ry, f(\rx)) ] $$
+        $$ \mathscr{r}_{\ell} (f) = \mathbb{E}_{(\textnormal{x}, \textnormal{y}) \sim D} [ \ell (\textnormal{y}, f(\textnormal{x})) ] $$
     </p>
     <p>
         This formulation depends only on the unknown data distribution. Hence, the optimization task uses the empirical risk as a proxy for the generalization risk, which is defined as the following:
-        $$ \erisk_{\mathcal{S}, \ell} (f) = \frac{1}{N} \sum_{i=1}^{N} \ell (y^{(i)}, f (x^{(i)})) $$
+        $$ \widetilde{\mathscr{r}}_{\mathcal{S}, \ell} (f) = \frac{1}{N} \sum_{i=1}^{N} \ell (y^{(i)}, f (x^{(i)})) $$
         where \(\mathcal{S}\) is a dataset \(\{( x^{(i)}, y^{(i)} )\}_{1 \leq i \leq N}\) drawn from the distribution \(D\).
     </p>
     <p>
@@ -132,39 +123,39 @@
     </p>
     <h3 id="subsection_2_1">2.1. Bayes risk</h3>
     <p>
-    Bayes risk \(\risk^{*}\) is the minimum value associated with the 0-1 loss function of the true risk \(\risk (f)\) and it is the risk of a optimal <i>Bayes predictor</i> \(f^{*}\) such that
-        $$ \risk^{*} = \inf_{f} \risk (f) = \inf_{f} \E_{(\rx, \ry) \sim D} [ \ell_{0-1} (\ry, f(\rx)) ] $$
-        where \(f\) is a measurable function. Using the law of total expectation, and by partitioning the previous expectation with respect to \(\rx\), we can rewrite the risk as an expression of the conditional expectation of \(\ry\) knowing \(\rx\):
-        $$ \risk (f) = \E_{\rx \sim D_{\rx}} \E_{\ry \sim D_{\ry}} [ \ell_{0-1} (\ry, f(x)) | \rx = x ] = \int_{x} \E_{\ry \sim D_{\ry}} [ \ell_{0-1} (\ry, f(x)) | \rx = x ] p(x) dx $$
+    Bayes risk \(\mathscr{r}^{*}\) is the minimum value associated with the 0-1 loss function of the true risk \(\mathscr{r} (f)\) and it is the risk of a optimal <i>Bayes predictor</i> \(f^{*}\) such that
+        $$ \mathscr{r}^{*} = \inf_{f} \mathscr{r} (f) = \inf_{f} \mathbb{E}_{(\textnormal{x}, \textnormal{y}) \sim D} [ \ell_{0-1} (\textnormal{y}, f(\textnormal{x})) ] $$
+        where \(f\) is a measurable function. Using the law of total expectation, and by partitioning the previous expectation with respect to \(\textnormal{x}\), we can rewrite the risk as an expression of the conditional expectation of \(\textnormal{y}\) knowing \(\textnormal{x}\):
+        $$ \mathscr{r} (f) = \mathbb{E}_{\textnormal{x} \sim D_{\textnormal{x}}} \mathbb{E}_{\textnormal{y} \sim D_{\textnormal{y}}} [ \ell_{0-1} (\textnormal{y}, f(x)) | \textnormal{x} = x ] = \int_{x} \mathbb{E}_{\textnormal{y} \sim D_{\textnormal{y}}} [ \ell_{0-1} (\textnormal{y}, f(x)) | \textnormal{x} = x ] p(x) dx $$
         Now, considering that different \(x\) are independently treated, we can rewrite the previous Bayes risk formula as <a href="#ref_2">[2]</a>:
-        $$ \risk^{*} = \E_{\rx \sim D_{\rx}} \inf_{f} \E [ \ell_{0-1} (\ry, f(x)) | \rx = x ] $$
+        $$ \mathscr{r}^{*} = \mathbb{E}_{\textnormal{x} \sim D_{\textnormal{x}}} \inf_{f} \mathbb{E} [ \ell_{0-1} (\textnormal{y}, f(x)) | \textnormal{x} = x ] $$
     </p>
     <p>
         There may be more than a single Bayes estimator for a prediction problem, and the Bayes risk associated is non zero unless there exists a deterministic dependency between \(x\) and \(y\).
-        Bayes estimators are more than often arbitrary functions, and the hypothesis space fails to capture them (they cannot be easily modeled with typical parametrized model). Thus, the Bayes risk is the theoretical minimum of the true risk and is usually not reached by the optimization solution \(\risk^{*} \leq \risk (f) \quad \forall f \in F\).
+        Bayes estimators are more than often arbitrary functions, and the hypothesis space fails to capture them (they cannot be easily modeled with typical parametrized model). Thus, the Bayes risk is the theoretical minimum of the true risk and is usually not reached by the optimization solution \(\mathscr{r}^{*} \leq \mathscr{r} (f) \quad \forall f \in F\).
     </p>
     <p>
-        In the binary case, if we denote \(\eta (x) = \mathbb{P} (\ry = 1 | \rx = x)\) then we can write Bayes risk as \(\risk^{*} = \E [\min(\eta(x), 1 - \eta(x))]\). For the multiclassification case, and if we note \(\eta (x) = [\eta_{1} (x), ..., \eta_{k} (x)]^{T}\) where \(\eta_{i} (x) = \mathbb{P} (\ry = i | \rx = x)\), then \(\risk^{*} = \E [1 - \max_{1 \leq i \leq k} \eta_{i} (x)]\).
+        In the binary case, if we denote \(\eta (x) = \mathbb{P} (\textnormal{y} = 1 | \textnormal{x} = x)\) then we can write Bayes risk as \(\mathscr{r}^{*} = \mathbb{E} [\min(\eta(x), 1 - \eta(x))]\). For the multiclassification case, and if we note \(\eta (x) = [\eta_{1} (x), ..., \eta_{k} (x)]^{T}\) where \(\eta_{i} (x) = \mathbb{P} (\textnormal{y} = i | \textnormal{x} = x)\), then \(\mathscr{r}^{*} = \mathbb{E} [1 - \max_{1 \leq i \leq k} \eta_{i} (x)]\).
     </p>
     <h3 id="subsection_2_2">2.2. Excess risk</h3>
     <p>
-        The excess risk of a predictor function \(f\) is equal to \(\risk (f) - \risk^{*}\) which is non-negative. \(\risk (f)\) is the true risk relative to the 0-1 loss, unless assumed otherwise using indices.
+        The excess risk of a predictor function \(f\) is equal to \(\mathscr{r} (f) - \mathscr{r}^{*}\) which is non-negative. \(\mathscr{r} (f)\) is the true risk relative to the 0-1 loss, unless assumed otherwise using indices.
     </p>
     <p>
         This risk represents the risk of a predictor function over the whole distribution relative to the baseline represented by the theoretical minimum risk, the Bayes risk.
     </p>
     <p>
-        We can define Bayes risk for convex surrogates \(\risk^{*}_{\ell}\) by replacing the 0-1 loss function with its surrogate. And by doing so, we can try to upper bound the excess risk relative to the 0-1 loss with the excess risk of its surrogates:
-        $$ \risk (f) - \risk^{*} \leq H (\risk_{\ell} (f) - \risk^{*}_{\ell}) $$
+        We can define Bayes risk for convex surrogates \(\mathscr{r}^{*}_{\ell}\) by replacing the 0-1 loss function with its surrogate. And by doing so, we can try to upper bound the excess risk relative to the 0-1 loss with the excess risk of its surrogates:
+        $$ \mathscr{r} (f) - \mathscr{r}^{*} \leq H (\mathscr{r}_{\ell} (f) - \mathscr{r}^{*}_{\ell}) $$
         where \(H: \mathbb{R}_{+} \rightarrow \mathbb{R}_{+}\) is usually called, if it exists, a <i>calibration function<i>. \(H\) depends on the choice of the convex surrogate and it is trivial that the tighter it is the calibration function, the more precise is the excess risk estimation <a href="#ref_2">[2]</a>. This ensures that a minimizer of the convex surrogate will also minimize the 0-1 loss to a certain order that is expressed by this calibration function.
     </p>
     <h3 id="subsection_2_3">2.3. Excess risk decomposition</h3>
     <p>
-        Let us define \(\hat{f} \in F\) as \(\hat{f} \in \argmin_{f \in F} \erisk (f)\) the minimizer of the empirical risk. We can then decompose the excess risk of this target function \(\hat{f}\) as such:
+        Let us define \(\hat{f} \in F\) as \(\hat{f} \in \mathrm{arg\,min}_{f \in F} \widetilde{\mathscr{r}} (f)\) the minimizer of the empirical risk. We can then decompose the excess risk of this target function \(\hat{f}\) as such:
         $$ 
-        \risk (\hat{f}) - \risk^{*} = 
-        \underbrace{\big(\quad \risk (\hat{f}) - \inf_{f' \in F} \risk (f') \quad\big)}_{\text{estimation error}}
-        + \underbrace{\big(\quad \inf_{f' \in F} \risk (f') - \risk^{*} \quad\big)}_{\text{approximation error}}
+        \mathscr{r} (\hat{f}) - \mathscr{r}^{*} = 
+        \underbrace{\big(\quad \mathscr{r} (\hat{f}) - \inf_{f' \in F} \mathscr{r} (f') \quad\big)}_{\text{estimation error}}
+        + \underbrace{\big(\quad \inf_{f' \in F} \mathscr{r} (f') - \mathscr{r}^{*} \quad\big)}_{\text{approximation error}}
         $$
     </p>
     <p>
@@ -173,10 +164,10 @@
     <p>
         The error most of the time expand beyond the estimation and approximation errors only. Optimization algorithms, especially for large hypothesis spaces, do not find \(\hat{f}\) but \(\tilde{f}\) corresponding to a local minima. This is true especially in the case of deep neural networks, and although it is trivial to find the optimum for certain simple models, it is safer to assume that optimization results do not exactly correspond to that optimum. This being said, this difference is only experimental (depends on the initialization, the optimization algorithm and the type of model), so it is ignored in what follows. Then it is interesting to rewrite the excess risk decomposition of \(\tilde{f}\) as:
         $$ 
-        \risk (\tilde{f}) - \risk^{*} = 
-        \underbrace{\big(\quad \risk (\tilde{f}) - \risk (\hat{f}) \quad\big)}_{\text{optimization error}}
-        + \underbrace{\big(\quad \risk (\hat{f}) - \inf_{f' \in F} \risk (f') \quad\big)}_{\text{estimation error}}
-        + \underbrace{\big(\quad \inf_{f' \in F} \risk (f') - \risk^{*} \quad\big)}_{\text{approximation error}}
+        \mathscr{r} (\tilde{f}) - \mathscr{r}^{*} = 
+        \underbrace{\big(\quad \mathscr{r} (\tilde{f}) - \mathscr{r} (\hat{f}) \quad\big)}_{\text{optimization error}}
+        + \underbrace{\big(\quad \mathscr{r} (\hat{f}) - \inf_{f' \in F} \mathscr{r} (f') \quad\big)}_{\text{estimation error}}
+        + \underbrace{\big(\quad \inf_{f' \in F} \mathscr{r} (f') - \mathscr{r}^{*} \quad\big)}_{\text{approximation error}}
         $$
     </p>
     <p>
@@ -194,13 +185,13 @@
         So given an optimization problem and a family of target functions (hypothesis space), and if we ignore the marginal optimization error, we are trying to minimize the estimation error of our target function, which represents the additional error accumulated on the whole data distribution.
     </p>
     <p>
-        From this perspective, let us now find a good upper bound of our estimation error: Assuming that \(\risk (f') = \min_{f \in F} \risk (f)\):
+        From this perspective, let us now find a good upper bound of our estimation error: Assuming that \(\mathscr{r} (f') = \min_{f \in F} \mathscr{r} (f)\):
         \begin{align}
-            \risk (\hat{f}) - \risk (f') 
-            & = \{ \risk (\hat{f}) - \erisk (\hat{f}) \} + \{ \erisk (\hat{f}) - \erisk (f') \} + \{ \erisk (f') - \risk (f') \} \nonumber \\
-            & \leq \sup_{f \in F} \{ \risk (f) - \erisk (f) \} + \{ \erisk (\hat{f}) - \erisk (f') \} + \sup_{f \in F} \{ \erisk (f) - \risk (f) \} \nonumber \\
-            & \leq \sup_{f \in F} \{ \risk (f) - \erisk (f) \} + 0 + \sup_{f \in F} \{ \erisk (f) - \risk (f) \} \nonumber \\
-            & \leq 2 \sup_{f \in F} | \risk (f) - \erisk (f) | \nonumber
+            \mathscr{r} (\hat{f}) - \mathscr{r} (f') 
+            & = \{ \mathscr{r} (\hat{f}) - \widetilde{\mathscr{r}} (\hat{f}) \} + \{ \widetilde{\mathscr{r}} (\hat{f}) - \widetilde{\mathscr{r}} (f') \} + \{ \widetilde{\mathscr{r}} (f') - \mathscr{r} (f') \} \nonumber \\
+            & \leq \sup_{f \in F} \{ \mathscr{r} (f) - \widetilde{\mathscr{r}} (f) \} + \{ \widetilde{\mathscr{r}} (\hat{f}) - \widetilde{\mathscr{r}} (f') \} + \sup_{f \in F} \{ \widetilde{\mathscr{r}} (f) - \mathscr{r} (f) \} \nonumber \\
+            & \leq \sup_{f \in F} \{ \mathscr{r} (f) - \widetilde{\mathscr{r}} (f) \} + 0 + \sup_{f \in F} \{ \widetilde{\mathscr{r}} (f) - \mathscr{r} (f) \} \nonumber \\
+            & \leq 2 \sup_{f \in F} | \mathscr{r} (f) - \widetilde{\mathscr{r}} (f) | \nonumber
         \end{align}
     </p>
     <h2 id="section_3">3. Classification-Calibrated convex surrogates</h2>
@@ -220,8 +211,8 @@
         This condition excludes the perceptron loss \(\ell_{perceptron}(y, w) = \max(0, -w (2y - 1))\) since it is not differentiable at \(0\).
         It is trivial to see that the minimizer of the conditional risk relative to the perceptron loss 
         \begin{align}
-                    & \E_{\ry \sim D_{\ry}} [ \ell_{perceptron} (\ry, f(x)) | \rx = x ] \nonumber \\
-            = \quad & p(\ry = 1 | \rx = x) \max(0, -f(x)) \quad + \quad p(\ry = 0 | \rx = x) \max(0, f(x)) \nonumber
+                    & \mathbb{E}_{\textnormal{y} \sim D_{\textnormal{y}}} [ \ell_{perceptron} (\textnormal{y}, f(x)) | \textnormal{x} = x ] \nonumber \\
+            = \quad & p(\textnormal{y} = 1 | \textnormal{x} = x) \max(0, -f(x)) \quad + \quad p(\textnormal{y} = 0 | \textnormal{x} = x) \max(0, f(x)) \nonumber
         \end{align}
         is the function \(f(x) = 0\), which leads to different decision rule than the Bayes estimator.
     </p>
@@ -232,10 +223,10 @@
     <p>
         <figure class="lemma" id="lemma_1">
             <figcaption>Lemma 1</figcaption>
-            The minimizer \(f^{*}\) of \(\E \left [ \ell(\ry, f(x)) | \rx = x \right ]\) has the following properties:
+            The minimizer \(f^{*}\) of \(\mathbb{E} \left [ \ell(\textnormal{y}, f(x)) | \textnormal{x} = x \right ]\) has the following properties:
             <ol>
-                <li>If \(\max_{i} P(\ry = i | \rx = x) &gt; 1/2\), then \(\argmax_{i} P(\ry = i) = \argmax_{i} f_{i} (x)\).</li>
-                <li>If \(\max_{i} P(\ry = i | \rx = x) &lt; 1/2\), then \(\forall i \; f_{i} (x) = \min_{j} f_{j} (x)\).</li>
+                <li>If \(\max_{i} P(\textnormal{y} = i | \textnormal{x} = x) &gt; 1/2\), then \(\mathrm{arg\,max}_{i} P(\textnormal{y} = i) = \mathrm{arg\,max}_{i} f_{i} (x)\).</li>
+                <li>If \(\max_{i} P(\textnormal{y} = i | \textnormal{x} = x) &lt; 1/2\), then \(\forall i \; f_{i} (x) = \min_{j} f_{j} (x)\).</li>
             </ol>
         </figure>
     </p>
@@ -243,12 +234,12 @@
         Proof in the appendix.
     </p>
     <p>
-        We can see from lemma <a href="#lemma_1">1</a> that the minimizer of the risk associated with this loss does not correspond always to the Bayes predictor (in the case of \(\max_{i} P(\ry = i | \rx = x) &lt; 1 / 2\)).
+        We can see from lemma <a href="#lemma_1">1</a> that the minimizer of the risk associated with this loss does not correspond always to the Bayes predictor (in the case of \(\max_{i} P(\textnormal{y} = i | \textnormal{x} = x) &lt; 1 / 2\)).
     </p>
     <h2 id="section_4">4. Generalization error</h2>
     <h4>Definition</h4>
     <p>
-    Given a dataset \(\mathcal{S} = \{(x^{(i)}, y^{(i)})\}_{1 \leq i \leq N}\), a target function \(f\) and a loss function \(\ell\), the generalization error is the difference between the true risk and empirical risk \(\E (f, \mathcal{S}, \ell) = \risk (f, \ell) - \erisk (f, \mathcal{S}, \ell)\).
+    Given a dataset \(\mathcal{S} = \{(x^{(i)}, y^{(i)})\}_{1 \leq i \leq N}\), a target function \(f\) and a loss function \(\ell\), the generalization error is the difference between the true risk and empirical risk \(\mathbb{E} (f, \mathcal{S}, \ell) = \mathscr{r} (f, \ell) - \widetilde{\mathscr{r}} (f, \mathcal{S}, \ell)\).
     </p>
     <h3 id="subsection_4_1">4.1. Generalization error bound</h3>
     <p>
@@ -262,15 +253,15 @@
         In this approach, the goal is to find an upper bound \(\epsilon\) on the expected maximum generalization error:
         \begin{equation}
             \label{eq:expected_gen_error}
-            \E [ \sup_{f \in F} | \risk (f, \ell) -  \erisk (f, \mathcal{S}, \ell) | ] \leq \epsilon
+            \mathbb{E} [ \sup_{f \in F} | \mathscr{r} (f, \ell) -  \widetilde{\mathscr{r}} (f, \mathcal{S}, \ell) | ] \leq \epsilon
         \end{equation}
     </p>
     <p>
         Which means that on average:
         \begin{align}
-            \sup_{f \in F} | \risk (f, \ell) -  \erisk (f, \mathcal{S}, \ell) | \leq \epsilon
-            &\implies | \risk (f, \ell) -  \erisk (f, \mathcal{S}, \ell) | \leq \epsilon \nonumber \\
-            &\implies \risk (f, \ell) \leq  \erisk (f, \mathcal{S}, \ell) + \epsilon \nonumber
+            \sup_{f \in F} | \mathscr{r} (f, \ell) -  \widetilde{\mathscr{r}} (f, \mathcal{S}, \ell) | \leq \epsilon
+            &\implies | \mathscr{r} (f, \ell) -  \widetilde{\mathscr{r}} (f, \mathcal{S}, \ell) | \leq \epsilon \nonumber \\
+            &\implies \mathscr{r} (f, \ell) \leq  \widetilde{\mathscr{r}} (f, \mathcal{S}, \ell) + \epsilon \nonumber
         \end{align}
     </p>
     <p>
@@ -281,20 +272,20 @@
         In this approach, instead of studying the expectation of the generalization bound, we rather find a \(1 - \delta\) confidence interval:
         \begin{equation}
             \label{eq:high_prob_gen_error_delta}
-            \mathbb{P} (\sup_{f \in F} | \risk (f, \ell) -  \erisk (f, \mathcal{S}, \ell) | &gt; \epsilon) \leq \delta
+            \mathbb{P} (\sup_{f \in F} | \mathscr{r} (f, \ell) -  \widetilde{\mathscr{r}} (f, \mathcal{S}, \ell) | &gt; \epsilon) \leq \delta
         \end{equation}
         \begin{equation}
             \label{eq:high_prob_gen_error_inv_delta}
-            \mathbb{P} (\sup_{f \in F} | \risk (f, \ell) -  \erisk (f, \mathcal{S}, \ell) | \leq \epsilon) \geq 1 - \delta
+            \mathbb{P} (\sup_{f \in F} | \mathscr{r} (f, \ell) -  \widetilde{\mathscr{r}} (f, \mathcal{S}, \ell) | \leq \epsilon) \geq 1 - \delta
         \end{equation}
         We can observe that unlike eq. \eqref{eq:expected_gen_error}, high probability bounds are stronger than expected ones. This bound indicates that it is very unlikely that the quantity of interest will exceed a certain bound, the first one on the other hand only describes the average case.
     </p>
     <p>
         So we are at least \(1 - \delta\) confident that:
         \begin{align}
-            \sup_{f \in F} | \risk (f, \ell) -  \erisk (f, \mathcal{S}, \ell) | \leq \epsilon
-            &\implies | \risk (f, \ell) -  \erisk (f, \mathcal{S}, \ell) | \leq \epsilon \nonumber \\
-            &\implies \risk (f, \ell) \leq  \erisk (f, \mathcal{S}, \ell) + \epsilon \nonumber
+            \sup_{f \in F} | \mathscr{r} (f, \ell) -  \widetilde{\mathscr{r}} (f, \mathcal{S}, \ell) | \leq \epsilon
+            &\implies | \mathscr{r} (f, \ell) -  \widetilde{\mathscr{r}} (f, \mathcal{S}, \ell) | \leq \epsilon \nonumber \\
+            &\implies \mathscr{r} (f, \ell) \leq  \widetilde{\mathscr{r}} (f, \mathcal{S}, \ell) + \epsilon \nonumber
         \end{align}
     </p>
     <h3 id="subsection_4_2">4.2. Focus on binary classification</h3>
@@ -314,46 +305,46 @@
         Let \(f : X_{1} \times X_{2} \times ... \times X_{n} \rightarrow \mathbb{R}\) satisfies the bounded differences property with bounds \(c_{1}, c_{2}, ..., c_{n}\)
     </p>
     <p>
-        Consider independent random variables \(\rx_{1}, \rx_{2}, ..., \rx_{n}\) where \(\rx_{i} \in X_{i}\) for all \(i\). Then, for any \(\epsilon &gt; 0\),
-        $$ P(|\E[f(\rx_{1}, \rx_{2}, ..., \rx_{n})] - f(\rx_{1}, \rx_{2}, ..., \rx_{n})| \geq \epsilon) \leq 2 exp(- \frac{2 \epsilon^{2}}{\sum_{i=1}^{n} c_{i}^{2}})$$
+        Consider independent random variables \(\textnormal{x}_{1}, \textnormal{x}_{2}, ..., \textnormal{x}_{n}\) where \(\textnormal{x}_{i} \in X_{i}\) for all \(i\). Then, for any \(\epsilon &gt; 0\),
+        $$ P(|\mathbb{E}[f(\textnormal{x}_{1}, \textnormal{x}_{2}, ..., \textnormal{x}_{n})] - f(\textnormal{x}_{1}, \textnormal{x}_{2}, ..., \textnormal{x}_{n})| \geq \epsilon) \leq 2 exp(- \frac{2 \epsilon^{2}}{\sum_{i=1}^{n} c_{i}^{2}})$$
     </p>
     <h4>Verifying the bounded differences property</h4>
     <p>
         We can re-write the previous empirical risk for a specific loss function as a function of the predictions as follows:
-        $$ \erisk_{\ell} (\tilde{y}) = \frac{1}{N} \sum_{i=1}^{N} \ell (y_{i}, \tilde{y}_{i}) $$
+        $$ \widetilde{\mathscr{r}}_{\ell} (\tilde{y}) = \frac{1}{N} \sum_{i=1}^{N} \ell (y_{i}, \tilde{y}_{i}) $$
         Where \(\tilde{y}\) is the vector of predictions.
     </p>
     <p>
         We can prove that for a target function that verify \(f (x) \in \{-1, 1\}\), we have:
-        $$ \sup_{\tilde{y}'_{i}} | \erisk_{\ell_{perceptron}, \mathcal{S}} (\tilde{y}_{1}, ..., \tilde{y}_{i}, ...) - \erisk_{\ell_{perceptron}, \mathcal{S}} (\tilde{y}_{1}, ..., \tilde{y}'_{i}, ...) | &lt; \frac{1}{N} \; \forall i$$
+        $$ \sup_{\tilde{y}'_{i}} | \widetilde{\mathscr{r}}_{\ell_{perceptron}, \mathcal{S}} (\tilde{y}_{1}, ..., \tilde{y}_{i}, ...) - \widetilde{\mathscr{r}}_{\ell_{perceptron}, \mathcal{S}} (\tilde{y}_{1}, ..., \tilde{y}'_{i}, ...) | &lt; \frac{1}{N} \; \forall i$$
         and 
-        $$ \sup_{\tilde{y}'_{i}} | \erisk_{\ell_{exp}, \mathcal{S}} (\tilde{y}_{1}, ..., \tilde{y}_{i}, ...) - \erisk_{\ell_{exp}, \mathcal{S}} (\tilde{y}_{1}, ..., \tilde{y}'_{i}, ...) | &lt; \frac{e - e^{-1}}{N} \; \forall i$$
+        $$ \sup_{\tilde{y}'_{i}} | \widetilde{\mathscr{r}}_{\ell_{exp}, \mathcal{S}} (\tilde{y}_{1}, ..., \tilde{y}_{i}, ...) - \widetilde{\mathscr{r}}_{\ell_{exp}, \mathcal{S}} (\tilde{y}_{1}, ..., \tilde{y}'_{i}, ...) | &lt; \frac{e - e^{-1}}{N} \; \forall i$$
     </p>
     <p>
         By applying the McDiarmid's Inequality we find the following:
-        $$ P ( | \risk (f, \ell_{perceptron}) - \erisk (f, \mathcal{S}, \ell_{perceptron}) | \ge \epsilon ) \le 2 exp (- 2 N \epsilon^{2}) $$
+        $$ P ( | \mathscr{r} (f, \ell_{perceptron}) - \widetilde{\mathscr{r}} (f, \mathcal{S}, \ell_{perceptron}) | \ge \epsilon ) \le 2 exp (- 2 N \epsilon^{2}) $$
         and 
-        $$ P ( | \risk (f, \ell_{exp}) - \erisk(f, \mathcal{S}, \ell_{exp}) | \ge \epsilon ) \le 2 exp (\frac{- 2 N \epsilon^{2}}{(e - e^{-1})^{2}}) $$
+        $$ P ( | \mathscr{r} (f, \ell_{exp}) - \widetilde{\mathscr{r}}(f, \mathcal{S}, \ell_{exp}) | \ge \epsilon ) \le 2 exp (\frac{- 2 N \epsilon^{2}}{(e - e^{-1})^{2}}) $$
     </p>
     <p>
         We can simplify the supremum condition as a union over the whole hypothesis space assuming for now that the hypothesis are independent:
         \begin{align}
-        P ( \sup_{f \in \mathcal{F}} | \risk (f, \ell) - \erisk (f, \mathcal{S}, \ell) | &gt; \epsilon) 
-        & \le P ( \bigcup_{f \in \mathcal{F}} | \risk (f, \ell) - \erisk (f, \mathcal{S}, \ell) | &gt; \epsilon) \nonumber \\
-        & \le \sum_{f \in \mathcal{F}} P ( | \risk (f, \ell) - \erisk (f, \mathcal{S}, \ell) | &gt; \epsilon) \nonumber
+        P ( \sup_{f \in \mathcal{F}} | \mathscr{r} (f, \ell) - \widetilde{\mathscr{r}} (f, \mathcal{S}, \ell) | &gt; \epsilon) 
+        & \le P ( \bigcup_{f \in \mathcal{F}} | \mathscr{r} (f, \ell) - \widetilde{\mathscr{r}} (f, \mathcal{S}, \ell) | &gt; \epsilon) \nonumber \\
+        & \le \sum_{f \in \mathcal{F}} P ( | \mathscr{r} (f, \ell) - \widetilde{\mathscr{r}} (f, \mathcal{S}, \ell) | &gt; \epsilon) \nonumber
         \end{align}
     </p>
     <p>
         Using now the previous inequalities:
-        $$ P ( \sup_{f \in \mathcal{F}} | \risk (f, \ell_{perceptron}) - \erisk (f, \mathcal{S}, \ell_{perceptron}) | &gt; \epsilon) &lt; 2 |\mathcal{F}| exp (- 2 N \epsilon^{2}) $$
+        $$ P ( \sup_{f \in \mathcal{F}} | \mathscr{r} (f, \ell_{perceptron}) - \widetilde{\mathscr{r}} (f, \mathcal{S}, \ell_{perceptron}) | &gt; \epsilon) &lt; 2 |\mathcal{F}| exp (- 2 N \epsilon^{2}) $$
         and 
-        $$ P ( \sup_{f \in \mathcal{F}} | \risk (f, \ell_{exp}) - \erisk (f, \mathcal{S}, \ell_{exp}) | &gt; \epsilon) &lt; 2 |\mathcal{F}| exp (\frac{- 2 N \epsilon^{2}}{(e - e^{-1})^{2}}) $$
+        $$ P ( \sup_{f \in \mathcal{F}} | \mathscr{r} (f, \ell_{exp}) - \widetilde{\mathscr{r}} (f, \mathcal{S}, \ell_{exp}) | &gt; \epsilon) &lt; 2 |\mathcal{F}| exp (\frac{- 2 N \epsilon^{2}}{(e - e^{-1})^{2}}) $$
     </p>
     <p>
         Then we can derive the high-probability bounds with confidence \(1 - \delta\):
-        $$ \risk (f, \ell_{perceptron}) \leq  \erisk (f, \mathcal{S}, \ell_{perceptron}) + \sqrt{\frac{ln(|\mathcal{F}|) + ln(\frac{2}{\delta})}{2N}} $$
+        $$ \mathscr{r} (f, \ell_{perceptron}) \leq  \widetilde{\mathscr{r}} (f, \mathcal{S}, \ell_{perceptron}) + \sqrt{\frac{ln(|\mathcal{F}|) + ln(\frac{2}{\delta})}{2N}} $$
         and
-        $$ \risk (f, \ell_{exp}) \leq  \erisk (f, \mathcal{S}, \ell_{exp}) + (e - e^{-1}) \sqrt{\frac{ln(|\mathcal{F}|) + ln (\frac{2}{\delta})}{2N}} $$
+        $$ \mathscr{r} (f, \ell_{exp}) \leq  \widetilde{\mathscr{r}} (f, \mathcal{S}, \ell_{exp}) + (e - e^{-1}) \sqrt{\frac{ln(|\mathcal{F}|) + ln (\frac{2}{\delta})}{2N}} $$
     </p>
     <p>
         The bound still depend on the complexity of the hypothesis space for both loss functions, although we can see that the generalization bound of the perceptron loss is tighter than the exponential loss's. This type of bound would be tighter with function that has smaller asymptotic growing rates (\(\mathcal{O} (x)\) vs \(\mathcal{O} (e^{x})\)), plus we would have got the same result using Hoeffding's inequality.
@@ -404,7 +395,7 @@
     <figure class="proof">
         <figcaption>proof</figcaption>
         <p>
-            Let \(\ell^{*}\) be the minimizer of \(C = \E \left [ \ell_{i} | \rx = x \right ]\). From property 1, we can see that \(\ell^{*}\) verify one of the following cases: (1) \(\forall i \; l^{*}_{i} &gt; 0\) or (2) \(\exists m \; l^{*}_{m} = 0\) and \(\forall i \neq m \; l^{*}_{i} &gt; 0\).
+            Let \(\ell^{*}\) be the minimizer of \(C = \mathbb{E} \left [ \ell_{i} | \textnormal{x} = x \right ]\). From property 1, we can see that \(\ell^{*}\) verify one of the following cases: (1) \(\forall i \; l^{*}_{i} &gt; 0\) or (2) \(\exists m \; l^{*}_{m} = 0\) and \(\forall i \neq m \; l^{*}_{i} &gt; 0\).
         </p>
         <h4>case (1)</h4>
         <p>
