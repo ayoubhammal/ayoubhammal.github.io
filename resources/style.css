@@ -15,6 +15,15 @@
     --color-blue: #005090;
     --color-cyan: #0080ff;
     --color-green: #859900;
+
+    --color-fg-light: var(--color-base01);
+    --color-bg-light: var(--color-base2);
+
+    --color-fg-dark: var(--color-base2);
+    --color-bg-dark: var(--color-base01);
+
+    --color-fg: var(--color-fg-light);
+    --color-bg: var(--color-bg-light);
 }
 
 * {
